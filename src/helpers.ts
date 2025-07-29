@@ -2,7 +2,7 @@ import type { Product } from './ProductDetailsPage';
 
 export const fetchProducts = async (): Promise<Product[]> => {
     try {
-        const response = await fetch('/products.json');
+        const response = await fetch('/task_q/products.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
