@@ -41,7 +41,7 @@ export const ProductListPage = () => {
     }, [searchTerm, products]);
 
     if (loading) return <Loading />;
-    if (error) return <ErrorMessage message={error} onRetry={loadProducts} />;
+    if (error) return <ErrorMessage />;
 
     return (
         <div className="min-h-screen bg-gray-50">

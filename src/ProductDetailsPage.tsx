@@ -66,8 +66,8 @@ export const ProductDetailsPage = () => {
     };
 
     if (loading) return <Loading />;
-    if (error) return <ErrorMessage message={error} onRetry={loadProduct} />;
-    if (!product) return <ErrorMessage message="Product not found" />;
+    if (error) return <ErrorMessage />;
+    if (!product) return <ErrorMessage />;
 
     const averageRating = product.reviews.reduce((acc, review) => acc + review.rating, 0) / product.reviews.length;
 
