@@ -62,7 +62,7 @@ export const ProductDetailsPage = () => {
     }, [productId]);
 
     const handleBackClick = () => {
-        navigate('/');
+        navigate('/task_q/');
     };
 
     if (loading) return <Loading />;

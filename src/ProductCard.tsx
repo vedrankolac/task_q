@@ -7,7 +7,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
     const averageRating = product.reviews.reduce((acc, review) => acc + review.rating, 0) / product.reviews.length;
 
     const handleClick = () => {
-        navigate(`/product/${product.id}`);
+        navigate(`/task_q/product/${product.id}`);
     };
 
     return (
