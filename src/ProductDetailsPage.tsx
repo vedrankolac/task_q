@@ -5,6 +5,7 @@ import { Loading } from './Loading';
 import { ErrorMessage } from './ErrorMessage';
 import { ArrowLeft } from 'lucide-react';
 import { StarRating } from './StarRating';
+import { Cart } from './Cart';
 
 export interface Product {
     id: number;
@@ -31,6 +32,7 @@ export const ProductDetailsPage = () => {
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [cartItemNumber, setCartItemNumber] = useState<number>(0);
 
     const productId = id ? parseInt(id) : null;
 
@@ -65,6 +67,17 @@ export const ProductDetailsPage = () => {
         navigate('/task_q/');
     };
 
+    const addToCartBE = ({ productId }: { productId: string }) => {
+        console.log('API call to BE done', productId);
+    };
+
+    const handleAddToCartClick = () => {
+        if (id) {
+            setCartItemNumber(cartItemNumber + 1);
+            addToCartBE({ productId: id });
+        }
+    };
+
     if (loading) return <Loading />;
     if (error) return <ErrorMessage />;
     if (!product) return <ErrorMessage />;
@@ -74,6 +87,7 @@ export const ProductDetailsPage = () => {
     return (
         <div className="min-h-screen bg-gray-50">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <Cart cartItemNumber={cartItemNumber} />
                 <button
                     onClick={handleBackClick}
                     className="flex items-center text-blue-600 hover:text-blue-700 mb-6 transition-colors"
@@ -121,7 +135,10 @@ export const ProductDetailsPage = () => {
                                 <p className="text-gray-700 leading-relaxed">{product.longDescription}</p>
                             </div>
 
-                            <button className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-semibold text-lg">
+                            <button
+                                onClick={handleAddToCartClick}
+                                className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-semibold text-lg"
+                            >
                                 Add to Cart
                             </button>
                         </div>
